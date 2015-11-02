@@ -86,7 +86,7 @@ extern void vunmap(const void *addr);
 extern int remap_vmalloc_range(struct vm_area_struct *vma, void *addr,
 							unsigned long pgoff);
 void vmalloc_sync_all(void);
- 
+
 /*
  *	Lowlevel-APIs (not for driver use!)
  */
@@ -178,22 +178,10 @@ pcpu_free_vm_areas(struct vm_struct **vms, int nr_vms)
 # endif
 #endif
 
-struct vmalloc_info {
-	unsigned long   used;
-	unsigned long   largest_chunk;
-};
-
 #ifdef CONFIG_MMU
 #define VMALLOC_TOTAL (VMALLOC_END - VMALLOC_START)
-extern void get_vmalloc_info(struct vmalloc_info *vmi);
 #else
-
 #define VMALLOC_TOTAL 0UL
-#define get_vmalloc_info(vmi)			\
-do {						\
-	(vmi)->used = 0;			\
-	(vmi)->largest_chunk = 0;		\
-} while (0)
 #endif
 
 #endif /* _LINUX_VMALLOC_H */
