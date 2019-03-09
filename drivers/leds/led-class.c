@@ -53,8 +53,7 @@ static ssize_t led_brightness_store(struct device *dev,
 	if (ret)
 		return ret;
 
-	if (state == LED_OFF)
-		led_trigger_set_default(led_cdev);
+	led_cdev->usr_brightness_req = state;
 	__led_set_brightness(led_cdev, state);
 
 	return size;
